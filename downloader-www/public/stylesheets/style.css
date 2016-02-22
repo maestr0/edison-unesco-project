@@ -6,3 +6,10 @@ body {
 a {
   color: #00B7FF;
 }
+button.delete{
+  color: red;
+}
+
+pre {
+  background: #c1c1c1;
+}
