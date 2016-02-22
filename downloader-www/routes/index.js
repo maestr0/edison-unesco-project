@@ -13,7 +13,7 @@ router.get('/', function (req, res, next) {
             status = stderr + "\n\n" + error;
         }
 
-        res.render('index', {title: 'UNESCO monitoring station', status: status});
+        res.render('index', {title: 'UNICEF monitoring station', status: status});
     });
 });
 
