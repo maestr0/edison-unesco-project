@@ -1,15 +1,16 @@
 extends layout
 
 block content
-    div.whole.align-center
-        p.moduleId Module ID:
-            span= moduleId
-        p.moduleTime Module clock:
-            span(data-unixtime=serverTime)
-            span.status In sync with your device
-    div.whole
-        a(href='/downloadPackages') Download data
-    div.whole
-        a(href='/hardwareStatus') Hardware status
-    div.whole.align-center
-        button#closeSession Close session
+    div.grid
+        div.whole.align-center
+            p.moduleId Module ID:
+                span= moduleId
+            p.moduleTime Module clock:
+                span(data-unixtime=serverTime)
+                span.status In sync with your device
+        div.whole.align-center
+            a(href='/downloadPackages').button-action Download data
+        div.whole.align-center
+            a(href='/hardwareStatus').button-action Hardware status
+        div.whole.align-center
+            a#closeSession.button-action Close session
