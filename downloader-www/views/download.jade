@@ -1,0 +1,9 @@
+extends layout
+
+block content
+    include nav
+    div.whole.align-center
+        p List of packages
+        ul
+            each val in packages
+                li= val
