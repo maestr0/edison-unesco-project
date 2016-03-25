@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var ce = require('./commandExecutor');
-
+var config = require('./config');
 var exec = require('child_process').exec;
 
 /* GET home page. */
@@ -26,7 +26,7 @@ router.get('/', function (req, res, next) {
 
 /* GET closeSession. */
 router.get('/closeSession', function (req, res, next) {
-    ce.scriptExecutor("closeSession.sh", function(error, stdout, stderr){
+    ce.scriptExecutor(config.scripts.closeSession, function (error, stdout, stderr) {
         if (!error) {
             res.send('closeSession');
         } else {
