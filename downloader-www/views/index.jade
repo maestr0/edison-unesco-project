@@ -5,12 +5,12 @@ block content
         p.moduleId Module ID:
             span= moduleId
     div.whole
-        p.moduleTime Module local time
-            span(data-unixtime=moduleTime)
+        p.moduleTime Module clock:
+            span(data-unixtime=serverTime)
+            span.status In sync with your device
     div.whole
-        h1= title
-        button Download Images
-        br
-        p Device status:
-        pre #{status}
-        button.delete Delete Images
+        a(href='/downloadPackages') Download data
+    div.whole
+        a(href='/hardwareStatus') Hardware status
+    div.whole
+        button#closeSession Close session
