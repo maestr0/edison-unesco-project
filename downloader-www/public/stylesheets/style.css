@@ -1,15 +1,26 @@
 body {
-  padding: 10px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    padding: 10px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+    color: #00B7FF;
 }
-button.delete{
-  color: red;
+
+button.delete {
+    color: red;
 }
 
 pre {
-  background: #c1c1c1;
+    background: #c1c1c1;
+}
+
+.whole {
+    height: 50px;
+}
+
+#closeSession {
+    color: red;
+    width: 50%;
+    height: 50%;
 }

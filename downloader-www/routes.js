@@ -28,7 +28,7 @@ router.get('/', function (req, res, next) {
 router.get('/closeSession', function (req, res, next) {
     ce.scriptExecutor(config.scripts.closeSession, function (error, stdout, stderr) {
         if (!error) {
-            res.send('closeSession');
+            res.send('closeSession: ' + stdout);
         } else {
             res.send('error ' + error);
         }
