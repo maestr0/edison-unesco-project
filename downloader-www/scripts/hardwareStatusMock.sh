@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-echo "OK" && echo "-----" && echo "666V" && echo "-----" && df -h
+echo "Failure" && echo "-----" && echo "666V" && echo "-----" && df -h
