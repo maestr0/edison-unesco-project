@@ -44,6 +44,17 @@ router.get('/downloadPackages', function (req, res, next) {
     });
 });
 
+/* GET syncTime. */
+router.get('/syncTime', function (req, res, next) {
+    ce.shellExecutor(config.shellCommands.syncTime + req.query.newTime, function (error, stdout, stderr) {
+        if (!error) {
+            res.send('Time set. ' + stdout);
+        } else {
+            res.status(500).send('error ' + error + '\n' + stderr);
+        }
+    });
+});
+
 /* GET hardwareStatus. */
 router.get('/hardwareStatus', function (req, res, next) {
     res.render('hardwareStatus', {

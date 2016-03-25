@@ -4,9 +4,15 @@ $(function () {
     var localTime = new Date().getTime();
 
     // 10 min tolerance
-    if (Math.abs(serverTimestamp - localTime) > (10 * 60 * 1000)) {
-        var resp = confirm("module time does not match your local time. Do you want to update module time?");
-
+    var largeTimeDifference = Math.abs(serverTimestamp - localTime) > (10 * 60 * 1000);
+    if (largeTimeDifference && confirm("module time does not match your local time. Do you want to update module time? New time will be " + new Date())) {
+        $.get("/syncTime", {"newTime": new Date().getTime()},
+            function (response) {
+                alert(response);
+            })
+            .fail(function (data) {
+                alert("error: " + data.responseText);
+            });
     }
 
     function bindEvents() {
@@ -19,4 +25,5 @@ $(function () {
     }
 
     bindEvents();
-});
+})
+;
