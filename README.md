@@ -1,6 +1,15 @@
 # edison-unicef-project
 Monitoring station configuration for Intel Edison
 
+# prepare env
+
+`npm install -g nodemon`
+
+`npm install -g bower`
+
+
+
+# start server via nodemon
 
 `NODE_ENV=development node app.js
 

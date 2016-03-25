@@ -23,7 +23,7 @@ router.get('/', function (req, res, next) {
             status = stdout + "\n\n" + stderr + "\n\n" + error;
         }
 
-        res.render('index', {title: 'UNICEF monitoring station', status: status});
+        res.render('index', {title: 'UNICEF monitoring station', moduleId: "AABBCCDDEEFF"});
     });
 });
 

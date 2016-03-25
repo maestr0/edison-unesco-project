@@ -1,9 +1,16 @@
 extends layout
 
 block content
-  h1= title
-  button Download Images
-  br
-  p Device status:
-  pre #{status}
-  button.delete Delete Images
+    div.whole
+        p.moduleId Module ID:
+            span= moduleId
+    div.whole
+        p.moduleTime Module local time
+            span(data-unixtime=moduleTime)
+    div.whole
+        h1= title
+        button Download Images
+        br
+        p Device status:
+        pre #{status}
+        button.delete Delete Images
