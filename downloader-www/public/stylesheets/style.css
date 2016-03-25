@@ -38,3 +38,10 @@ pre {
     background-color: #c1c1c1;
     border: 0;
 }
+
+.hardwareStatus span {
+    margin-left: 10px;
+    color: #000c64;
+    font-weight: bold;
+    font-size: 14px;
+}

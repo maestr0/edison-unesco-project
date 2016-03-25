@@ -3,10 +3,15 @@ extends layout
 block content
     div.grid
         include nav
-        div.whole
+        div.whole.hardwareStatus
             h1 Hardware status
             p battery voltage
+                span= voltage
             p motion sensor
+                span= motion
             p soap touch sensor
+                span= touch
             p camera
-            p storage usage
+                span= camera
+            p storage usage (scroll right for more -> )
+                pre= storage

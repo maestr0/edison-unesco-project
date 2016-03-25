@@ -55,10 +55,34 @@ router.get('/syncTime', function (req, res, next) {
     });
 });
 
+var checkMotionSensorStatus = function () {
+    return "OK";
+}
+var checkTouchSensorStatus = function () {
+    return "OK";
+}
+
 /* GET hardwareStatus. */
 router.get('/hardwareStatus', function (req, res, next) {
-    res.render('hardwareStatus', {
-        title: 'UNICEF monitoring station - hardwareStatus'
+    ce.scriptExecutor(config.scripts.hardwareStatus, function (error, stdout, stderr) {
+        if (!error) {
+            var status = stdout.split(/-----/);
+            if (status.length === 3) {
+                res.render('hardwareStatus', {
+                    title: 'UNICEF monitoring station - hardwareStatus',
+                    camera: status[0],
+                    voltage: status[1],
+                    storage: status[2],
+                    motion: checkMotionSensorStatus(),
+                    touch: checkTouchSensorStatus()
+                });
+            } else {
+                res.status(500).send('status parsing error:\n ' + stdout);
+            }
+
+        } else {
+            res.status(500).send('error ' + error + '\n' + stderr);
+        }
     });
 });
 
