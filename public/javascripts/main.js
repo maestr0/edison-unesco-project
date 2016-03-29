@@ -5,7 +5,7 @@ $(function () {
 
     // 10 min tolerance
     var largeTimeDifference = Math.abs(serverTimestamp - localTime) > (10 * 60 * 1);
-    if (largeTimeDifference) {
+    if (true) {
         if (confirm("module time does not match your local time. Do you want to update module time? New time will be " + new Date())) {
             $.get("/syncTime", {"newTime": new Date().getTime()},
                 function (response) {
