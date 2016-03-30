@@ -11,7 +11,7 @@ var exec = require('child_process').exec;
 
 var app = express();
 
-GLOBAL_CONFIG = {};
+GLOBAL_CONFIG = {moduleId:"dev-12:12:32:11:33:AB"};
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
