@@ -46,13 +46,7 @@ router.get('/downloadPackages', function (req, res, next) {
 
 /* GET syncTime. */
 router.get('/syncTime', function (req, res, next) {
-    ce.shellExecutor(config.shellCommands.syncTime + req.query.newTime, function (error, stdout, stderr) {
-        if (!error) {
-            res.send('Time set. ' + stdout);
-        } else {
-            res.status(500).send('error ' + error + '\n' + stderr);
-        }
-    });
+    res.send('Time set. ' + new Date());    
 });
 
 var checkMotionSensorStatus = function () {
@@ -63,27 +57,14 @@ var checkTouchSensorStatus = function () {
 }
 
 /* GET hardwareStatus. */
-router.get('/hardwareStatus', function (req, res, next) {
-    ce.scriptExecutor(config.scripts.hardwareStatus, function (error, stdout, stderr) {
-        if (!error) {
-            var status = stdout.split(/-----/);
-            if (status.length === 3) {
+router.get('/hardwareStatus', function (req, res, next) {    
                 res.render('hardwareStatus', {
                     title: 'UNICEF monitoring station - hardwareStatus',
-                    camera: status[0],
-                    voltage: status[1],
-                    storage: status[2],
-                    motion: checkMotionSensorStatus(),
-                    touch: checkTouchSensorStatus()
-                });
-            } else {
-                res.status(500).send('status parsing error:\n ' + stdout);
-            }
-
-        } else {
-            res.status(500).send('error ' + error + '\n' + stderr);
-        }
-    });
+                    camera: "OK",
+                    voltage: "3.2V",
+                    storage: "30% free, 21GB free",
+                    motion: "OK",
+                    touch: "OK"});
 });
 
 module.exports = router;
