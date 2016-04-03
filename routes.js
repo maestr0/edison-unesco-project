@@ -51,6 +51,7 @@ router.get('/syncTime', function (req, res, next) {
             if (!error) {
                 res.send('Time synchronized.');
             } else {
+                console.error(error);
                 res.send('error ' + error);
             }
         });
