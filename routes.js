@@ -46,7 +46,14 @@ router.get('/downloadPackages', function (req, res, next) {
 
 /* GET syncTime. */
 router.get('/syncTime', function (req, res, next) {
-    res.send('Time set. ' + new Date());    
+    ce.scriptExecutor(config.scripts.syncTime + req.query.newTime,
+        function (error, stdout, stderr) {
+            if (!error) {
+                res.send('Time synchronized.');
+            } else {
+                res.send('error ' + error);
+            }
+        });
 });
 
 var checkMotionSensorStatus = function () {
@@ -57,14 +64,15 @@ var checkTouchSensorStatus = function () {
 }
 
 /* GET hardwareStatus. */
-router.get('/hardwareStatus', function (req, res, next) {    
-                res.render('hardwareStatus', {
-                    title: 'UNICEF monitoring station - hardwareStatus',
-                    camera: "OK",
-                    voltage: "3.2V",
-                    storage: "30% free, 21GB free",
-                    motion: "OK",
-                    touch: "OK"});
+router.get('/hardwareStatus', function (req, res, next) {
+    res.render('hardwareStatus', {
+        title: 'UNICEF monitoring station - hardwareStatus',
+        camera: "OK",
+        voltage: "3.2V",
+        storage: "30% free, 21GB free",
+        motion: "OK",
+        touch: "OK"
+    });
 });
 
 module.exports = router;
