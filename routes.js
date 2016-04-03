@@ -46,7 +46,7 @@ router.get('/downloadPackages', function (req, res, next) {
 
 /* GET syncTime. */
 router.get('/syncTime', function (req, res, next) {
-    ce.shellExecutor(config.scripts.syncTime + req.query.newTime,
+    ce.shellExecutor(config.shellCommands.syncTime + req.query.newTime,
         function (error, stdout, stderr) {
             if (!error) {
                 res.send('Time synchronized.');
