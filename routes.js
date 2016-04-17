@@ -37,12 +37,9 @@ router.get('/closeSession', function (req, res, next) {
 });
 
 /* GET downloadPackages. */
-router.get('/downloadPackages', function (req, res, next) {
-    res.render('download', {
-        title: 'UNICEF monitoring station - Download',
-        packages: ["file1.zip", "file2.zip", "file3.zip"]
-    });
-});
+var serveIndex = require('serve-index');
+router.use(express.static(__dirname + "/"))
+router.use('/downloadPackages', serveIndex(__dirname + '/packages'));
 
 /* GET syncTime. */
 router.get('/syncTime', function (req, res, next) {
