@@ -40,7 +40,18 @@ $(function () {
                 $(placeholderSelector).append("<span class='error'>" + response.stderr + "</span>");
             })
             .fail(function (data) {
-                alert("error: " + data.responseText);
+                $(placeholderSelector).append("<span class='error'>" + data.responseText + "</span>");
+            });
+    }
+
+    function getStatusFromMonitoringApp(device, placeholderSelector) {
+        $.get("http://localhost:8080/status/", {device: device},
+            function (response) {
+                $(placeholderSelector).append("<span class='ok'>" + response.status + "</span>");
+                $(placeholderSelector).append("<span class='error'>" + response.error + "</span>");
+            })
+            .fail(function (data) {
+                $(placeholderSelector).append("<span class='error'>Unable to get status for " + device + " Error: " + data.responseText + "</span>");
             });
     }
 
@@ -49,6 +60,8 @@ $(function () {
         getStatus("battery-voltage", "#battery");
         getStatus("ls /dev/video0", "#camera");
         getStatus("df -h /media/storage/", "#storage");
+        getStatusFromMonitoringApp("motion", "#motion");
+        getStatusFromMonitoringApp("touch", "#touch");
     }
 })
 ;

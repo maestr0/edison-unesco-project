@@ -43,6 +43,10 @@ pre {
     color: red;
 }
 
+.hardwareStatus span.ok {
+    color: green;
+}
+
 .hardwareStatus span {
     margin-left: 10px;
     color: #000c64;
