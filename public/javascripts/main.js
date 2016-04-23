@@ -4,7 +4,7 @@ $(function () {
     var localTime = new Date().getTime();
 
     $(".moduleTime .status")
-        .text("Module time is: " + new Date(serverTimestamp));
+        .text("Module time OK: " + new Date(serverTimestamp));
 
     // 10 min tolerance
     var largeTimeDifference = Math.abs(serverTimestamp - localTime) > (10 * 60 * 1000);
