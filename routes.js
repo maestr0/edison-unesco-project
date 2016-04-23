@@ -28,7 +28,9 @@ router.get('/closeSession', function (req, res, next) {
 var packagesPath = (process.env.MODULE_PACKAGES_DIR || "/tmp" );
 /* GET downloadPackages. */
 var serveIndex = require('serve-index');
-router.use(express.static(__dirname + "/"))
+router.use(express.static(__dirname + "/"));
+
+router.use('/download', express.static(packagesPath));
 router.use('/download', serveIndex(packagesPath, {'icons': true, 'view': 'details'}));
 
 /* GET syncTime. */
