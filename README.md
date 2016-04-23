@@ -7,7 +7,7 @@ Monitoring station configuration for Intel Edison
 
 `npm install -g bower`
 
-# dev shit
+# dev
 
 CSS responsive grid
 
@@ -19,7 +19,7 @@ http://jade-lang.com/
 
 # start server via nodemon
 
-    NODE_ENV=development node index.js
+    NODE_ENV=development nodemon index.js
 
 # Features 
 

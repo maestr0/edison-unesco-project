@@ -6,17 +6,6 @@ var exec = require('child_process').exec;
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-    var status = "";
-    //var commands = [
-    //    "date",
-    //    "configure_edison --showWiFiIP",
-    //    "configure_edison --showWiFiMode",
-    //    "configure_edison --showNames",
-    //    "hostnamectl",
-    //    "df -h",
-    //    "free -h"
-    //].join('; echo "\n\n" && ');
-
     res.render('index', {
         title: 'UNICEF monitoring station',
         moduleId: GLOBAL_CONFIG.moduleId,
@@ -36,10 +25,11 @@ router.get('/closeSession', function (req, res, next) {
 
 });
 
+var packagesPath = (process.env.MODULE_PACKAGES_DIR || "/tmp" );
 /* GET downloadPackages. */
 var serveIndex = require('serve-index');
 router.use(express.static(__dirname + "/"))
-router.use('/downloadPackages', serveIndex(__dirname + '/packages'));
+router.use('/download', serveIndex(packagesPath));
 
 /* GET syncTime. */
 router.get('/syncTime', function (req, res, next) {
@@ -54,15 +44,8 @@ router.get('/syncTime', function (req, res, next) {
         });
 });
 
-var checkMotionSensorStatus = function () {
-    return "OK";
-}
-var checkTouchSensorStatus = function () {
-    return "OK";
-}
-
 /* GET hardwareStatus. */
-router.get('/hardwareStatus', function (req, res, next) {
+router.get('/status', function (req, res, next) {
     res.render('hardwareStatus', {
         title: 'UNICEF monitoring station - hardwareStatus',
         camera: "OK",
