@@ -29,7 +29,7 @@ var packagesPath = (process.env.MODULE_PACKAGES_DIR || "/tmp" );
 /* GET downloadPackages. */
 var serveIndex = require('serve-index');
 router.use(express.static(__dirname + "/"))
-router.use('/download', serveIndex(packagesPath));
+router.use('/download', serveIndex(packagesPath, {'icons': true, 'view': 'details'}));
 
 /* GET syncTime. */
 router.get('/syncTime', function (req, res, next) {
