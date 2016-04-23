@@ -70,7 +70,7 @@ $(function () {
         console.log("hardware status");
         getStatus("battery-voltage", "#battery");
         getStatus("ls /dev/video0", "#camera");
-        getStatus("df -h /", "#storage", true);
+        getStatus("df -h /media/sdcard/", "#storage", true);
         getStatusFromMonitoringApp("motion", "#motion");
         getStatusFromMonitoringApp("touch", "#touch");
     }
