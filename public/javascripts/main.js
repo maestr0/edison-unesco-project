@@ -57,7 +57,7 @@ $(function () {
     }
 
     function getStatusFromMonitoringApp(device, placeholderSelector) {
-        $.get("http://localhost:8080/status/", {device: device},
+        $.get("http://" + document.location.hostname + ":8080/status", {device: device},
             function (response) {
                 $(placeholderSelector).append("<span class='ok'>" + response.status + "</span>");
                 if (response.error) {
