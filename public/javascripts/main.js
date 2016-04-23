@@ -3,6 +3,9 @@ $(function () {
     var serverTimestamp = $("p.moduleTime span").data("unixtime");
     var localTime = new Date().getTime();
 
+    $(".moduleTime .status")
+        .text("Module time is: " + new Date(serverTimestamp));
+
     // 10 min tolerance
     var largeTimeDifference = Math.abs(serverTimestamp - localTime) > (10 * 60 * 1000);
     if (largeTimeDifference) {
