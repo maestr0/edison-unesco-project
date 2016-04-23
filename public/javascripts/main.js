@@ -32,12 +32,21 @@ $(function () {
 
     bindEvents();
 
-    function getStatus(command, placeholderSelector) {
+    function getStatus(command, placeholderSelector, multiline) {
         $.get("/execute", {command: command},
             function (response) {
-                $(placeholderSelector).append("<span class='ok'>" + response.stdout + "</span>");
-                $(placeholderSelector).append("<span class='error'>" + JSON.stringify(response.error) + "</span>");
-                $(placeholderSelector).append("<span class='error'>" + response.stderr + "</span>");
+                if (multiline && response.stdout) {
+                    $(placeholderSelector).append("<pre class='ok'>" + response.stdout + "</pre>");
+                } else {
+                    $(placeholderSelector).append("<span class='ok'>" + response.stdout + "</span>");
+                }
+                if (response.error) {
+                    $(placeholderSelector).append("<span class='error'>" + JSON.stringify(response.error) + "</span>");
+                }
+
+                if (response.stderr) {
+                    $(placeholderSelector).append("<span class='error'>" + response.stderr + "</span>");
+                }
             })
             .fail(function (data) {
                 $(placeholderSelector).append("<span class='error'>" + data.responseText + "</span>");
@@ -48,7 +57,9 @@ $(function () {
         $.get("http://localhost:8080/status/", {device: device},
             function (response) {
                 $(placeholderSelector).append("<span class='ok'>" + response.status + "</span>");
-                $(placeholderSelector).append("<span class='error'>" + response.error + "</span>");
+                if (response.error) {
+                    $(placeholderSelector).append("<span class='error'>" + response.error + "</span>");
+                }
             })
             .fail(function (data) {
                 $(placeholderSelector).append("<span class='error'>Unable to get status for " + device + " Error: " + data.responseText + "</span>");
@@ -59,7 +70,7 @@ $(function () {
         console.log("hardware status");
         getStatus("battery-voltage", "#battery");
         getStatus("ls /dev/video0", "#camera");
-        getStatus("df -h /media/storage/", "#storage");
+        getStatus("df -h /", "#storage", true);
         getStatusFromMonitoringApp("motion", "#motion");
         getStatusFromMonitoringApp("touch", "#touch");
     }

@@ -39,6 +39,15 @@ pre {
     border: 0;
 }
 
+#storage {
+    float: left;
+}
+
+#storage pre {
+    background: none;
+    font-weight: bold;
+}
+
 .hardwareStatus span.error {
     color: red;
 }
