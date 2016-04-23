@@ -39,6 +39,10 @@ pre {
     border: 0;
 }
 
+.hardwareStatus span.error {
+    color: red;
+}
+
 .hardwareStatus span {
     margin-left: 10px;
     color: #000c64;

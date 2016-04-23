@@ -44,15 +44,26 @@ router.get('/syncTime', function (req, res, next) {
         });
 });
 
+/* GET syncTime. */
+router.get('/execute', function (req, res, next) {
+    ce.shellExecutor(req.query.command,
+        function (error, stdout, stderr) {
+            if (error) {
+                console.error(error);
+            }
+            res.send({stdout: stdout, stderr: stderr, error: error});
+        });
+});
+
 /* GET hardwareStatus. */
 router.get('/status', function (req, res, next) {
     res.render('hardwareStatus', {
         title: 'UNICEF monitoring station - hardwareStatus',
-        camera: "OK",
-        voltage: "3.2V",
-        storage: "30% free, 21GB free",
-        motion: "OK",
-        touch: "OK"
+        camera: "N/A",
+        voltage: "N/A",
+        storage: "N/A",
+        motion: "N/A",
+        touch: "N/A"
     });
 });
 

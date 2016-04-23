@@ -31,5 +31,24 @@ $(function () {
     }
 
     bindEvents();
+
+    function getStatus(command, placeholderSelector) {
+        $.get("/execute", {command: command},
+            function (response) {
+                $(placeholderSelector).append("<span class='ok'>" + response.stdout + "</span>");
+                $(placeholderSelector).append("<span class='error'>" + JSON.stringify(response.error) + "</span>");
+                $(placeholderSelector).append("<span class='error'>" + response.stderr + "</span>");
+            })
+            .fail(function (data) {
+                alert("error: " + data.responseText);
+            });
+    }
+
+    if ($("#hardwareStatus").length === 1) {
+        console.log("hardware status");
+        getStatus("battery-voltage", "#battery");
+        getStatus("ls /dev/video0", "#camera");
+        getStatus("df -h /media/storage/", "#storage");
+    }
 })
 ;
