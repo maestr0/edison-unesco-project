@@ -7,11 +7,9 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes');
 var config = require('./config');
-var exec = require('child_process').exec;
-
 var app = express();
 
-GLOBAL_CONFIG = {moduleId: "dev-12:12:32:11:33:AB"};
+GLOBAL_CONFIG = {moduleId: (process.env.SERIAL_NUMBER || "dev-12:12:32:11:33:AB")};
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -67,13 +65,3 @@ app.listen(app.get('port'), function () {
     console.log("config loaded: " + JSON.stringify(config));
     getModuleId();
 });
-
-var getModuleId = function () {
-    exec(config.shellCommands.moduleId, function (error, stdout, stderr) {
-        if (!error) {
-            GLOBAL_CONFIG['moduleId'] = stdout;
-        } else {
-            GLOBAL_CONFIG['moduleId'] = "Unknown ID";
-        }
-    });
-}
