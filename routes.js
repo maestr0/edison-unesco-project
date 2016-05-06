@@ -31,7 +31,7 @@ var serveIndex = require('serve-index');
 router.use(express.static(__dirname + "/"));
 
 router.use('/download', express.static(packagesPath));
-router.use('/download', serveIndex(packagesPath, {'icons': true, 'view': 'details'}));
+router.use('/download', serveIndex(packagesPath, {'icons': true, 'view': 'details', template: __dirname + "/views/download.template.html"}));
 
 /* GET syncTime. */
 router.get('/syncTime', function (req, res, next) {
