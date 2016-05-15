@@ -58,7 +58,7 @@ app.use(function (err, req, res, next) {
 });
 
 
-app.set('port', (process.env.DOWNLOADER_PORT || 3000));
+app.set('port', (process.env.DOWNLOADER_PORT || process.env.PORT || 3000));
 
 app.listen(app.get('port'), function () {
     console.log('Module configurator UI listening on port 3000!');
