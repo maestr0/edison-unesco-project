@@ -1,4 +1,5 @@
 $(function () {
+    $.ajaxSetup({timeout: 5000});
     console.log("Module configurator");
     var serverTimestamp = $("p.moduleTime span").data("unixtime");
     var localTime = new Date().getTime();
