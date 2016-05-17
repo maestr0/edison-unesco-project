@@ -1,6 +1,6 @@
 var winston = require('winston');
 var rebootCount = (process.env.REBOOT_COUNT || "RC");
-var loggerFilePath = (process.env.MODULE_PACKAGES_DIR || ".") + "/" + rebootCount + "_downloader.log";
+var loggerFilePath = (process.env.MODULE_PACKAGES_DIR || ".") + "/logs/" + rebootCount + "_downloader.log";
 
 winston.add(require('winston-daily-rotate-file'), {
     filename: loggerFilePath,
