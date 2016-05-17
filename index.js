@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var routes = require('./routes');
 var config = require('./config');
 var app = express();
+var winston = require('./log.js');
 
 GLOBAL_CONFIG = {moduleId: (process.env.SERIAL_NUMBER || "dev-12:12:32:11:33:AB")};
 
@@ -61,6 +62,6 @@ app.use(function (err, req, res, next) {
 app.set('port', (process.env.DOWNLOADER_PORT || process.env.PORT || 3000));
 
 app.listen(app.get('port'), function () {
-    console.log('Module configurator UI listening on port ' + app.get('port'));
-    console.log("config loaded: " + JSON.stringify(config));
+    winston.info('Module configurator UI listening on port ' + app.get('port'));
+    winston.info("config loaded: " + JSON.stringify(config));
 });

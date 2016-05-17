@@ -1,12 +1,13 @@
 var exec = require('child_process').exec;
+var winston = require('./log.js');
 
 var ce = {
     scriptExecutor: function (scriptName, callback) {
-        console.log("Executing script: " + scriptName);
+        winston.info("Executing script: " + scriptName);
         exec('./scripts/' + scriptName, callback);
     },
     shellExecutor: function (scriptName, callback) {
-        console.log("Executing shell command: " + scriptName);
+        winston.info("Executing shell command: " + scriptName);
         exec(scriptName, callback);
     }
 }
