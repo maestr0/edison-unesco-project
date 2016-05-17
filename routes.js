@@ -17,7 +17,7 @@ router.get('/', function (req, res, next) {
 /* GET closeSession. */
 router.get('/closeSession', function (req, res, next) {
     winston.info("closing session");
-    ce.scriptExecutor(config.scripts.closeSession, function (error, stdout, stderr) {
+    ce.shellExecutor(config.shellCommands.closeSession, function (error, stdout, stderr) {
         if (!error) {
             winston.info("closing session OK");
             res.send('closeSession: ' + stdout);
